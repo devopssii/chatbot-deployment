@@ -8,38 +8,13 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
-        this.sessionId = null; // Идентификатор сессии пользователя
-    }
-
-    async createSession() {
-        // В этой функции вы можете создать сессию на вашем сервере и получить идентификатор сессии
-        // Отправьте запрос на сервер, чтобы создать сессию и получить sessionId
-        try {
-            const response = await fetch('https://api.synlabs.pro/create_session', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                this.sessionId = data.sessionId; // Сохраните полученный идентификатор сессии
-            } else {
-                console.error('Failed to create session');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        this.sessionId = null; 
     }
 
     display() {
         const {openButton, chatBox, sendButton} = this.args;
 
-        openButton.addEventListener('click', async () => {
-            if (!this.sessionId) {
-                await this.createSession();
-            }
+        openButton.addEventListener('click', () => {
             this.toggleState(chatBox);
         });
 
@@ -56,7 +31,6 @@ class Chatbox {
     toggleState(chatbox) {
         this.state = !this.state;
 
-        // show or hides the box
         if(this.state) {
             chatbox.classList.add('chatbox--active');
         } else {
@@ -65,11 +39,6 @@ class Chatbox {
     }
 
     onSendButton(chatbox) {
-        if (!this.sessionId) {
-            console.error('Session not created');
-            return;
-        }
-
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
         if (text1 === "") {
@@ -79,7 +48,6 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        // Отправьте сообщение и идентификатор сессии на сервер
         fetch('https://api.synlabs.pro/send_message', {
             method: 'POST',
             body: JSON.stringify({ user_id: this.sessionId, message: text1 }),
