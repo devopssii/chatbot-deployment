@@ -12,11 +12,11 @@ body {
 }
 
 *, html {
-    --primaryGradient: linear-gradient(93.12deg, #581B98 0.52%, #9C1DE7 100%);
-    --secondaryGradient: linear-gradient(268.91deg, #581B98 -2.14%, #9C1DE7 99.69%);
+    --primaryGradient: linear-gradient(93.12deg, #444cf7 0.52%, #444cf7 100%);
+    --secondaryGradient: linear-gradient(268.91deg, #444cf7 -2.14%, #444cf7 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-    --primary: #581B98;
+    --primary: #0e1123;
 }
 
 /* CHATBOX
@@ -98,7 +98,7 @@ body {
 
 .chatbox__support {
     background: #f9f9f9;
-    height: 450px;
+    height: 550px;
     width: 350px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 20px;
@@ -113,8 +113,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 15px 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     box-shadow: var(--primaryBoxShadow);
 }
 
@@ -173,11 +173,16 @@ body {
     margin-top: 20px;
 }
 
+.message-input:focus {
+    outline: none; /* Убирает стандартный контур браузера */
+    box-shadow: 0 0 5px #0e1123; /* Добавляет тень вокруг поля ввода */
+}
+
 .chatbox__footer input {
-    width: 80%;
+    width: 100%;
     border: none;
     padding: 10px 10px;
-    border-radius: 30px;
+    border-radius: 5px;
     text-align: left;
 }
 
@@ -188,13 +193,13 @@ body {
 .chatbox__button button,
 .chatbox__button button:focus,
 .chatbox__button button:visited {
-    padding: 10px;
-    background: white;
+    padding: 5px;
+    background: #444cf7;
     border: none;
     outline: none;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
